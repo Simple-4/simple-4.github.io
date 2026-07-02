@@ -1,0 +1,1511 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Narbeth's Simple Learning Academy 4.0 – Empowering learners with quality education, practical skills, and personalized guidance.">
+<meta name="keywords" content="Narbeth Academy, education, school, learning, programs, admissions, primary, secondary, skills development">
+<title>Narbeth's Simple Learning Academy 4.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   CSS VARIABLES & RESET
+   ============================================= */
+:root {
+  --navy: #0A1628;
+  --navy-mid: #142040;
+  --blue: #1B4FBF;
+  --blue-light: #2E6BE6;
+  --blue-pale: #EBF1FF;
+  --gold: #C9920A;
+  --gold-bright: #F0C040;
+  --gold-light: #FDF3D0;
+  --white: #FFFFFF;
+  --grey-50: #F5F7FA;
+  --grey-100: #EEF1F6;
+  --grey-300: #C4CBD6;
+  --grey-500: #7A8499;
+  --grey-700: #3D4558;
+  --text: #1A2238;
+  --radius: 16px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(10,22,40,0.10);
+  --shadow-lg: 0 12px 48px rgba(10,22,40,0.18);
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+[data-theme="dark"] {
+  --navy: #0D1B2A;
+  --navy-mid: #1A2E48;
+  --blue-pale: #1A2740;
+  --grey-50: #121E2E;
+  --grey-100: #1A2740;
+  --grey-300: #2E4060;
+  --grey-500: #7090B0;
+  --grey-700: #A0B8D0;
+  --text: #E8EEF6;
+  --white: #1A2740;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.5);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--white);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* =============================================
+   TYPOGRAPHY
+   ============================================= */
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.2;font-weight:700}
+h1{font-size:clamp(2.2rem,5vw,4rem)}
+h2{font-size:clamp(1.8rem,3.5vw,2.8rem)}
+h3{font-size:clamp(1.2rem,2vw,1.5rem)}
+h4{font-size:1.1rem}
+p{color:var(--grey-700)}
+
+/* =============================================
+   UTILITIES
+   ============================================= */
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+.section{padding:5rem 0}
+.section-alt{background:var(--grey-50)}
+.badge{display:inline-block;background:var(--gold-light);color:var(--gold);font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;border-radius:50px;margin-bottom:1rem}
+.section-header{text-align:center;margin-bottom:3.5rem}
+.section-header h2{color:var(--navy);margin-bottom:.75rem}
+.section-header p{color:var(--grey-500);max-width:600px;margin:0 auto;font-size:1.05rem}
+.gold-line{display:block;width:56px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-bright));border-radius:2px;margin:.75rem auto 1rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:50px;font-weight:600;font-size:.95rem;transition:var(--transition);cursor:pointer}
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue-light));color:#fff;box-shadow:0 4px 20px rgba(27,79,191,0.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(27,79,191,0.5)}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.7)}
+.btn-outline:hover{background:rgba(255,255,255,0.15);border-color:#fff}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:var(--navy);font-weight:700}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,146,10,0.45)}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.fade-in.visible{opacity:1;transform:none}
+
+/* =============================================
+   NAVIGATION
+   ============================================= */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 0;background:var(--navy);transition:var(--transition)}
+#navbar.scrolled{background:var(--navy);backdrop-filter:none;padding:1.2rem 0;box-shadow:0 2px 20px rgba(0,0,0,0.3)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;line-height:1.5}
+.nav-logo{display:flex;align-items:center;gap:.75rem}
+.nav-logo .logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--gold),var(--gold-bright));border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--navy)}
+.nav-logo .logo-text{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#fff;line-height:1.35}
+.nav-logo .logo-sub{font-size:.7rem;font-weight:400;color:var(--gold-bright);font-family:'Inter',sans-serif;letter-spacing:.05em;line-height:1.35}
+.nav-links{display:flex;align-items:center;gap:.25rem}
+.nav-links a{color:rgba(255,255,255,0.85);font-size:.875rem;font-weight:500;padding:.4rem .7rem;border-radius:6px;transition:var(--transition)}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,0.1)}
+.nav-actions{display:flex;align-items:center;gap:.75rem}
+.dark-toggle{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:var(--transition)}
+.dark-toggle:hover{background:rgba(255,255,255,0.2)}
+.search-btn{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:var(--transition)}
+.search-btn:hover{background:rgba(255,255,255,0.2)}
+.hamburger{display:none;flex-direction:column;gap:5px;width:36px;height:36px;justify-content:center;align-items:center}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:var(--transition)}
+#mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--navy);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+#mobile-menu.open{display:flex}
+#mobile-menu a{color:#fff;font-size:1.3rem;font-weight:600;font-family:'Playfair Display',serif}
+#mobile-menu .close-menu{position:absolute;top:1.5rem;right:1.5rem;color:#fff;font-size:1.5rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center}
+
+/* =============================================
+   HERO
+   ============================================= */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 40%,#1a3a6e 100%);z-index:0}
+.hero-pattern{position:absolute;inset:0;z-index:1;opacity:.07;background-image:repeating-linear-gradient(45deg,var(--gold-bright) 0,var(--gold-bright) 1px,transparent 0,transparent 50%);background-size:20px 20px}
+.hero-accent{position:absolute;right:-10%;top:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(27,79,191,0.4) 0%,transparent 70%);z-index:1}
+.hero-accent2{position:absolute;left:-5%;bottom:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(201,146,10,0.2) 0%,transparent 70%);z-index:1}
+.hero-ribbon{position:absolute;right:0;top:0;bottom:0;width:45%;z-index:2;overflow:hidden}
+.hero-ribbon::before{content:'';position:absolute;top:0;right:0;bottom:0;left:10%;background:linear-gradient(135deg,rgba(27,79,191,0.15),rgba(201,146,10,0.08));clip-path:polygon(15% 0,100% 0,100% 100%,0% 100%)}
+.hero-image-mosaic{position:absolute;right:3%;top:50%;transform:translateY(-50%);display:grid;grid-template-columns:1fr 1fr;gap:12px;width:360px;z-index:3}
+.hero-img-card{border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.4);transition:var(--transition)}
+.hero-img-card:nth-child(1){height:200px;grid-column:1/-1}
+.hero-img-card:nth-child(2){height:140px}
+.hero-img-card:nth-child(3){height:140px}
+.hero-img-card img{width:100%;height:100%;object-fit:cover}
+.hero-img-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--blue) 0%,var(--navy-mid) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:2rem}
+.hero-img-placeholder span{font-size:.75rem;margin-top:.5rem;letter-spacing:.05em}
+.hero-content{position:relative;z-index:4;max-width:580px}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(201,146,10,0.15);border:1px solid rgba(240,192,64,0.3);color:var(--gold-bright);font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.4rem 1rem;border-radius:50px;margin-bottom:1.5rem}
+.hero-badge .dot{width:6px;height:6px;background:var(--gold-bright);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+.hero-content h1{color:#fff;font-size:clamp(2rem,4.5vw,3.8rem);line-height:1.15;margin-bottom:1.25rem}
+.hero-content h1 .highlight{color:var(--gold-bright);position:relative;display:inline-block}
+.hero-content p{color:rgba(255,255,255,0.8);font-size:1.1rem;margin-bottom:2rem;line-height:1.7;max-width:480px}
+.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-stats{display:flex;gap:2rem;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1);flex-wrap:wrap}
+.hero-stat{min-width:120px}
+.hero-stat .num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--gold-bright);display:block}
+.hero-stat .lbl{font-size:.75rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,0.5);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
+.scroll-arrow{width:28px;height:28px;border:1px solid rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* =============================================
+   ABOUT
+   ============================================= */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.about-visual{position:relative}
+.about-img-main{border-radius:var(--radius);overflow:hidden;height:420px;background:linear-gradient(135deg,var(--blue-pale),var(--grey-100))}
+.about-img-main .placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;flex-direction:column;gap:1rem;color:var(--grey-300)}
+.about-badge-float{position:absolute;bottom:-1.5rem;right:-1.5rem;background:#fff;border-radius:14px;padding:1.25rem;box-shadow:var(--shadow-lg);display:flex;gap:.75rem;align-items:center;min-width:200px}
+.about-badge-float .icon{width:44px;height:44px;background:var(--gold-light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.about-badge-float .info .num{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--navy)}
+.about-badge-float .info .lbl{font-size:.75rem;color:var(--grey-500)}
+.about-text .badge{margin-bottom:.75rem}
+.about-text h2{color:var(--navy);margin-bottom:1rem}
+.about-text p{margin-bottom:1.25rem;line-height:1.75}
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-top:1.5rem}
+.value-chip{background:var(--blue-pale);color:var(--blue);font-size:.8rem;font-weight:600;padding:.4rem .75rem;border-radius:6px;text-align:center}
+.mission-vision{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.75rem}
+.mv-card{background:var(--grey-50);border-radius:var(--radius-sm);padding:1.25rem;border-left:3px solid var(--gold)}
+.mv-card h4{color:var(--navy);margin-bottom:.4rem;font-size:.9rem;text-transform:uppercase;letter-spacing:.05em}
+.mv-card p{font-size:.875rem;margin:0}
+
+/* =============================================
+   WHY CHOOSE US
+   ============================================= */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.feature-card{background:var(--white);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);border:1px solid var(--grey-100);transition:var(--transition);position:relative;overflow:hidden}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--gold-bright));opacity:0;transition:var(--transition)}
+.feature-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.feature-card:hover::before{opacity:1}
+.feature-icon{width:56px;height:56px;border-radius:14px;background:var(--blue-pale);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:1.25rem}
+.feature-card h3{color:var(--navy);font-size:1.1rem;margin-bottom:.5rem}
+.feature-card p{font-size:.9rem;line-height:1.6;margin:0}
+
+/* =============================================
+   PROGRAMS
+   ============================================= */
+.programs-tabs{display:flex;gap:.75rem;justify-content:center;margin-bottom:2.5rem;flex-wrap:wrap}
+.tab-btn{padding:.6rem 1.5rem;border-radius:50px;font-weight:600;font-size:.875rem;border:2px solid var(--grey-100);color:var(--grey-500);transition:var(--transition)}
+.tab-btn.active,.tab-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.program-panel{display:none}
+.program-panel.active{display:block}
+.program-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--grey-100)}
+.program-header{background:linear-gradient(135deg,var(--navy),var(--navy-mid));padding:2rem;color:#fff}
+.program-header .level{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:.5rem}
+.program-header h3{font-size:1.6rem;color:#fff}
+.program-body{padding:2rem}
+.subject-list{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem}
+.subject-item{display:flex;align-items:center;gap:.6rem;font-size:.9rem;padding:.5rem;background:var(--grey-50);border-radius:var(--radius-sm)}
+.subject-item::before{content:'✓';color:var(--blue);font-weight:700;font-size:.8rem;flex-shrink:0}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.skill-card{background:var(--white);border-radius:var(--radius-sm);padding:1.25rem;box-shadow:var(--shadow);border:1px solid var(--grey-100);text-align:center;transition:var(--transition)}
+.skill-card:hover{border-color:var(--blue);transform:translateY(-3px)}
+.skill-icon{font-size:2rem;margin-bottom:.5rem}
+.skill-card h4{color:var(--navy);font-size:.9rem;margin:0}
+
+/* =============================================
+   STATISTICS
+   ============================================= */
+#stats{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);position:relative;overflow:hidden}
+#stats::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(240,192,64,0.04) 0,rgba(240,192,64,0.04) 1px,transparent 0,transparent 50%);background-size:20px 20px}
+.stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem;position:relative;z-index:1}
+.stat-item{text-align:center;padding:1.5rem 1rem}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--gold-bright);display:block}
+.stat-label{font-size:.8rem;color:rgba(255,255,255,0.65);margin-top:.25rem;line-height:1.4}
+
+/* =============================================
+   ADMISSIONS
+   ============================================= */
+.admission-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.steps-list{display:flex;flex-direction:column;gap:1.25rem}
+.step{display:flex;gap:1.25rem;align-items:flex-start}
+.step-num{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue-light));color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-content h4{color:var(--navy);margin-bottom:.25rem}
+.step-content p{font-size:.9rem;margin:0}
+.connector{width:2px;height:20px;background:var(--grey-100);margin-left:21px;margin-top:.25rem}
+.docs-card{background:linear-gradient(135deg,var(--blue-pale),var(--white));border-radius:var(--radius);padding:2rem;border:1px solid rgba(27,79,191,0.15)}
+.docs-card h3{color:var(--navy);margin-bottom:1rem}
+.doc-item{display:flex;align-items:center;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--grey-100)}
+.doc-item:last-child{border-bottom:none}
+.doc-icon{font-size:1.2rem}
+.enroll-cta{background:linear-gradient(135deg,var(--gold),var(--gold-bright));border-radius:var(--radius);padding:2rem;text-align:center;margin-top:1.5rem}
+.enroll-cta h3{color:var(--navy);margin-bottom:.5rem}
+.enroll-cta p{color:var(--navy);opacity:.8;font-size:.9rem;margin-bottom:1.25rem}
+
+/* =============================================
+   TEACHERS
+   ============================================= */
+.teachers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.teacher-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--grey-100);transition:var(--transition);text-align:center}
+.teacher-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.teacher-photo{height:200px;background:linear-gradient(135deg,var(--blue-pale),var(--grey-100));display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden}
+.teacher-photo-placeholder{font-size:5rem;color:var(--grey-300)}
+.teacher-info{padding:1.25rem}
+.teacher-name{color:var(--navy);font-size:1rem;margin-bottom:.2rem}
+.teacher-position{color:var(--blue);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem}
+.teacher-quals{font-size:.8rem;color:var(--grey-500);margin-bottom:.5rem}
+.teacher-exp{display:inline-block;background:var(--gold-light);color:var(--gold);font-size:.75rem;font-weight:600;padding:.2rem .6rem;border-radius:50px}
+
+/* =============================================
+   STUDENT LIFE
+   ============================================= */
+.life-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.life-card{background:var(--white);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);border:1px solid var(--grey-100);display:flex;align-items:flex-start;gap:1rem;transition:var(--transition)}
+.life-card:hover{border-color:var(--blue);box-shadow:0 8px 32px rgba(27,79,191,0.12)}
+.life-icon{width:48px;height:48px;border-radius:12px;background:var(--blue-pale);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.life-card h4{color:var(--navy);margin-bottom:.25rem;font-size:1rem}
+.life-card p{font-size:.85rem;margin:0}
+
+/* =============================================
+   FACILITIES
+   ============================================= */
+.facilities-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.facility-card{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);position:relative;height:200px;transition:var(--transition);cursor:pointer}
+.facility-card:hover{transform:scale(1.03)}
+.facility-bg{width:100%;height:100%;background:linear-gradient(135deg,var(--blue) 0%,var(--navy) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;transition:var(--transition)}
+.facility-card:hover .facility-bg{background:linear-gradient(135deg,var(--navy-mid) 0%,var(--blue) 100%)}
+.facility-icon{font-size:2.5rem}
+.facility-name{color:#fff;font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;text-align:center;padding:0 1rem}
+
+/* =============================================
+   TESTIMONIALS
+   ============================================= */
+.testimonials-container{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.testimonial-card{background:var(--white);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);border:1px solid var(--grey-100);position:relative;transition:var(--transition)}
+.testimonial-card::before{content:'"';position:absolute;top:1rem;left:1.5rem;font-family:'Playfair Display',serif;font-size:5rem;color:var(--blue-pale);line-height:1;pointer-events:none}
+.testimonial-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.testimonial-text{font-size:.95rem;line-height:1.7;margin-bottom:1.25rem;position:relative;z-index:1;padding-top:1.5rem}
+.stars{color:var(--gold);font-size:1rem;letter-spacing:.1em;margin-bottom:.75rem}
+.testimonial-author{display:flex;align-items:center;gap:.75rem}
+.author-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue-light));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700}
+.author-name{font-weight:600;color:var(--navy);font-size:.9rem}
+.author-role{font-size:.8rem;color:var(--grey-500)}
+
+/* =============================================
+   NEWS & EVENTS
+   ============================================= */
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.news-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--grey-100);transition:var(--transition)}
+.news-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.news-img{height:160px;background:linear-gradient(135deg,var(--blue-pale),var(--grey-100));display:flex;align-items:center;justify-content:center;font-size:2.5rem;position:relative}
+.news-tag{position:absolute;top:.75rem;left:.75rem;background:var(--blue);color:#fff;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:.25rem .6rem;border-radius:4px}
+.news-body{padding:1.25rem}
+.news-date{font-size:.75rem;color:var(--grey-500);margin-bottom:.5rem}
+.news-body h4{color:var(--navy);margin-bottom:.5rem;font-size:1rem}
+.news-body p{font-size:.85rem;margin:0}
+.events-list{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
+.event-item{display:flex;align-items:center;gap:1.25rem;background:var(--white);border-radius:var(--radius-sm);padding:1rem 1.25rem;box-shadow:var(--shadow);border:1px solid var(--grey-100)}
+.event-date-box{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--blue-light));display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.event-date-box .day{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#fff;line-height:1}
+.event-date-box .month{font-size:.6rem;color:rgba(255,255,255,0.8);text-transform:uppercase;letter-spacing:.1em}
+.event-info h4{color:var(--navy);margin-bottom:.2rem;font-size:.95rem}
+.event-info p{font-size:.8rem;color:var(--grey-500);margin:0}
+
+/* =============================================
+   FAQ
+   ============================================= */
+.faq-list{display:flex;flex-direction:column;gap:.75rem;max-width:800px;margin:0 auto}
+.faq-item{background:var(--white);border-radius:var(--radius-sm);box-shadow:var(--shadow);border:1px solid var(--grey-100);overflow:hidden}
+.faq-question{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;cursor:pointer;font-weight:600;color:var(--navy);transition:var(--transition);gap:1rem}
+.faq-question:hover{color:var(--blue)}
+.faq-icon{width:28px;height:28px;border-radius:50%;border:2px solid var(--grey-100);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.8rem;transition:var(--transition);color:var(--grey-500)}
+.faq-item.open .faq-icon{background:var(--blue);border-color:var(--blue);color:#fff;transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+.faq-item.open .faq-answer{max-height:200px}
+.faq-answer-inner{padding:0 1.5rem 1.25rem;color:var(--grey-700);font-size:.9rem;line-height:1.7}
+
+/* =============================================
+   GALLERY
+   ============================================= */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:1rem}
+.gallery-item{border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;position:relative;transition:var(--transition)}
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-item.wide{grid-column:span 2}
+.gallery-item.tall{grid-row:span 2}
+.gallery-bg{width:100%;height:100%;background:linear-gradient(135deg,var(--blue) 0%,var(--navy) 100%);display:flex;align-items:center;justify-content:center;font-size:2.5rem}
+.gallery-overlay{position:absolute;inset:0;background:rgba(10,22,40,0.7);display:flex;align-items:center;justify-content:center;opacity:0;transition:var(--transition)}
+.gallery-overlay span{color:#fff;font-size:2rem}
+.gallery-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(10,22,40,0.85));padding:.75rem 1rem;color:#fff;font-size:.8rem;font-weight:500;transform:translateY(100%);transition:var(--transition)}
+.gallery-item:hover .gallery-caption{transform:none}
+
+/* Lightbox */
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:3000;align-items:center;justify-content:center}
+#lightbox.open{display:flex}
+.lightbox-content{max-width:90%;max-height:80vh;text-align:center}
+.lightbox-close{position:absolute;top:1.5rem;right:1.5rem;color:#fff;font-size:2rem;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);border-radius:50%}
+.lightbox-placeholder{width:700px;max-width:90vw;height:450px;border-radius:var(--radius);background:linear-gradient(135deg,var(--navy-mid),var(--blue));display:flex;align-items:center;justify-content:center;font-size:5rem}
+.lightbox-caption{color:rgba(255,255,255,0.8);margin-top:1rem;font-size:.9rem}
+
+/* =============================================
+   CONTACT
+   ============================================= */
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:3rem}
+.contact-info{display:flex;flex-direction:column;gap:1.5rem}
+.contact-item{display:flex;gap:1rem;align-items:flex-start}
+.contact-item-icon{width:48px;height:48px;border-radius:12px;background:var(--blue-pale);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.contact-item-text h4{color:var(--navy);margin-bottom:.2rem;font-size:.95rem}
+.contact-item-text p{font-size:.875rem;margin:0;line-height:1.6}
+.hours-grid{display:grid;gap:.4rem;margin-top:.5rem}
+.hour-row{display:flex;justify-content:space-between;font-size:.85rem;padding:.3rem 0;border-bottom:1px solid var(--grey-100)}
+.hour-row:last-child{border-bottom:none}
+.contact-form{background:var(--white);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);border:1px solid var(--grey-100)}
+.contact-form h3{color:var(--navy);margin-bottom:1.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.form-group label{font-size:.85rem;font-weight:600;color:var(--grey-700)}
+.form-group input,.form-group textarea,.form-group select{padding:.75rem 1rem;border:1.5px solid var(--grey-100);border-radius:var(--radius-sm);font-size:.9rem;font-family:'Inter',sans-serif;color:var(--text);background:var(--grey-50);transition:var(--transition);outline:none}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--blue);background:var(--white);box-shadow:0 0 0 3px rgba(27,79,191,0.1)}
+.form-group input.error,.form-group textarea.error{border-color:#e53e3e}
+.form-group .error-msg{font-size:.75rem;color:#e53e3e;display:none}
+.form-group.has-error .error-msg{display:block}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-success{display:none;background:#f0fff4;border:1px solid #9ae6b4;border-radius:var(--radius-sm);padding:1rem;color:#276749;font-size:.9rem;margin-top:1rem}
+.map-placeholder{height:220px;background:linear-gradient(135deg,var(--blue-pale),var(--grey-100));border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:3rem;margin-top:1.5rem;position:relative;overflow:hidden;border:1px solid var(--grey-100)}
+.map-placeholder::after{content:'📍 Academy Location';position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:.8rem;padding:.4rem 1rem;border-radius:50px;white-space:nowrap}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+footer{background:var(--navy);color:rgba(255,255,255,0.8);padding:4rem 0 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.footer-brand .logo-text-footer{font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;font-weight:700;margin-bottom:.5rem}
+.footer-brand p{font-size:.875rem;line-height:1.7;margin-bottom:1.25rem;color:rgba(255,255,255,0.6)}
+.social-links{display:flex;gap:.5rem}
+.social-link{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:var(--transition);color:rgba(255,255,255,0.7)}
+.social-link:hover{background:var(--blue);color:#fff}
+.footer-col h4{color:#fff;font-size:.9rem;font-weight:700;margin-bottom:1rem;font-family:'Playfair Display',serif}
+.footer-col ul{display:flex;flex-direction:column;gap:.5rem}
+.footer-col ul li a{color:rgba(255,255,255,0.6);font-size:.85rem;transition:var(--transition)}
+.footer-col ul li a:hover{color:var(--gold-bright)}
+.newsletter-form{display:flex;gap:.5rem;margin-top:1rem}
+.newsletter-form input{flex:1;padding:.65rem 1rem;border-radius:var(--radius-sm);border:none;background:rgba(255,255,255,0.1);color:#fff;font-size:.875rem;outline:none}
+.newsletter-form input::placeholder{color:rgba(255,255,255,0.4)}
+.newsletter-form button{padding:.65rem 1rem;background:var(--gold);color:var(--navy);border-radius:var(--radius-sm);font-weight:700;font-size:.8rem;white-space:nowrap;transition:var(--transition)}
+.newsletter-form button:hover{background:var(--gold-bright)}
+.footer-bottom{padding:1.5rem 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:.8rem;color:rgba(255,255,255,0.45)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:.8rem;color:rgba(255,255,255,0.45);transition:var(--transition)}
+.footer-links a:hover{color:var(--gold-bright)}
+
+/* =============================================
+   COOKIE BANNER
+   ============================================= */
+#cookie-banner{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:1500;background:var(--navy-mid);color:rgba(255,255,255,0.9);border-radius:var(--radius);padding:1.25rem 1.5rem;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:1.5rem;max-width:600px;width:calc(100% - 3rem);border:1px solid rgba(255,255,255,0.1);transition:var(--transition)}
+#cookie-banner.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(20px)}
+#cookie-banner p{font-size:.85rem;margin:0}
+.cookie-btns{display:flex;gap:.5rem;flex-shrink:0}
+.cookie-accept{padding:.5rem 1.2rem;background:var(--gold);color:var(--navy);border-radius:50px;font-weight:700;font-size:.8rem;cursor:pointer;transition:var(--transition)}
+.cookie-accept:hover{background:var(--gold-bright)}
+.cookie-decline{padding:.5rem 1.2rem;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border-radius:50px;font-size:.8rem;cursor:pointer}
+
+/* =============================================
+   BACK TO TOP
+   ============================================= */
+#back-to-top{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue-light));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 16px rgba(27,79,191,0.4);z-index:900;opacity:0;pointer-events:none;transform:translateY(10px);transition:var(--transition)}
+#back-to-top.visible{opacity:1;pointer-events:all;transform:none}
+#back-to-top:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(27,79,191,0.5)}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media(max-width:1024px){
+  .hero-image-mosaic{display:none}
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+  .teachers-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:768px){
+  .nav-links,.nav-actions .btn,.search-btn{display:none}
+  .hamburger{display:flex}
+  .hero-content{padding-top:5rem}
+  .about-grid,.admission-grid,.contact-grid{grid-template-columns:1fr}
+  .grid-2,.grid-3,.grid-4,.features-grid,.programs-tabs,.news-grid,.testimonials-container,.life-grid,.skills-grid,.mission-vision{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .about-badge-float{display:none}
+  .facilities-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-item.wide{grid-column:span 1}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .form-row{grid-template-columns:1fr}
+  .values-grid{grid-template-columns:repeat(2,1fr)}
+  .subject-list{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .hero-buttons{flex-direction:column}
+  .hero-stats{gap:1rem}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- SEARCH OVERLAY -->
+<div id="search-overlay" role="dialog" aria-label="Search">
+  <div class="search-inner">
+    <input type="text" id="search-input" placeholder="Search…" aria-label="Search the site">
+    <p style="color:rgba(255,255,255,0.4);font-size:.85rem;margin-top:1rem">Search programs, teachers, news, and more…</p>
+  </div>
+  <button class="search-close" onclick="closeSearch()" aria-label="Close search">✕</button>
+</div>
+
+<!-- MOBILE MENU -->
+<nav id="mobile-menu" aria-label="Mobile navigation">
+  <button class="close-menu" onclick="closeMobileMenu()" aria-label="Close menu">✕</button>
+  <a href="#hero" onclick="closeMobileMenu()">Home</a>
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#programs" onclick="closeMobileMenu()">Programs</a>
+  <a href="#admissions" onclick="closeMobileMenu()">Admissions</a>
+  <a href="#teachers" onclick="closeMobileMenu()">Teachers</a>
+  <a href="#life" onclick="closeMobileMenu()">Student Life</a>
+  <a href="#gallery" onclick="closeMobileMenu()">Gallery</a>
+  <a href="#news" onclick="closeMobileMenu()">News</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+</nav>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-label="Image viewer">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+  <div class="lightbox-content">
+    <div class="lightbox-placeholder" id="lightbox-content">🏫</div>
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header>
+  <nav id="navbar" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+       <a href="#hero" class="nav-logo" aria-label="Narbeth's Simple Learning Academy 4.0 home">
+          <div class="logo-icon">N</div>
+          <div>
+            <div class="logo-text">Narbeth's Academy</div>
+           <div class="logo-sub">Simple Learning 4.0</div>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#programs">Programs</a>
+          <a href="#admissions">Admissions</a>
+          <a href="#teachers">Teachers</a>
+          <a href="#life">Student Life</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#news">News</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <button class="search-btn" onclick="openSearch()" aria-label="Open search">🔍</button>
+          <button class="dark-toggle" onclick="toggleDark()" aria-label="Toggle dark mode" id="dark-btn">🌙</button>
+          <a href="#admissions" class="btn btn-gold" style="padding:.5rem 1.25rem;font-size:.85rem">Enroll Now</a>
+          <button class="hamburger" onclick="openMobileMenu()" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-accent2"></div>
+  <div class="hero-ribbon"></div>
+  <div class="hero-image-mosaic" aria-hidden="true">
+    <div class="hero-img-card">
+      <div class="hero-img-placeholder">🎓<span>Modern Classrooms</span></div>
+    </div>
+    <div class="hero-img-card">
+      <div class="hero-img-placeholder" style="background:linear-gradient(135deg,#1a3a8a,#0A1628)">💻<span>Computer Lab</span></div>
+    </div>
+    <div class="hero-img-card">
+      <div class="hero-img-placeholder" style="background:linear-gradient(135deg,#0A1628,#1B4FBF)">📚<span>Library</span></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero-content fade-in">
+      <div class="hero-badge"><span class="dot"></span> Enrollment Now Open — 2028</div>
+      <h1>Welcome to<br><span class="highlight">Narbeth's <u><em>Simple</em></u><br>Learning Academy</span> <u><em>4.0</em></u></h1>
+      <p>Empowering learners with quality education, practical skills, and personalized guidance to achieve academic and personal success.</p>
+      <div class="hero-buttons">
+        <a href="#admissions" class="btn btn-gold">✏️ Enroll Now</a>
+        <a href="#programs" class="btn btn-outline">📖 Explore Our Programs</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="num" data-count="1000">0</span><span class="lbl">Students<br>Educated</span></div>
+        <div class="hero-stat"><span class="num" data-count="50">0</span><span class="lbl">Dedicated<br>Teachers</span></div>
+        <div class="hero-stat"><span class="num" data-count="20">0</span><span class="lbl">Programs<br>Offered</span></div>
+        <div class="hero-stat"><span class="num" data-count="95">0</span><span class="lbl">Success<br>Rate %</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="scroll-arrow">↓</div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual fade-in">
+        <div class="about-img-main">
+          <div class="placeholder" aria-hidden="true">🏫<span style="font-size:1rem;color:var(--grey-500)">Our Campus</span></div>
+        </div>
+        <div class="about-badge-float" aria-hidden="true">
+          <div class="icon">🏆</div>
+          <div class="info">
+            <div class="num">15+ Yrs</div>
+            <div class="lbl">Educational Experience</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text fade-in">
+        <span class="badge">Who We Are</span>
+        <h2>A Community Built for<br>Lifelong Learning</h2>
+        <span class="gold-line"></span>
+        <p>Narbeth's Simple Learning Academy 4.0 is committed to making education engaging, accessible, and meaningful. We provide a supportive learning environment where students develop critical thinking, creativity, confidence, and practical skills for lifelong success.</p>
+        <p>Our experienced educators use modern teaching methods, interactive technology, and student-focused instruction to help every learner reach their full potential.</p>
+        <div class="mission-vision">
+          <div class="mv-card">
+            <h4>🎯 Our Mission</h4>
+            <p>To provide quality education that inspires curiosity, develops character, and prepares students for future opportunities.</p>
+          </div>
+          <div class="mv-card">
+            <h4>👁️ Our Vision</h4>
+            <p>To become a trusted academy recognized for excellence in education, innovation, and student achievement.</p>
+          </div>
+        </div>
+        <h4 style="color:var(--navy);margin:1.5rem 0 .75rem;font-size:.9rem;text-transform:uppercase;letter-spacing:.05em">Core Values</h4>
+        <div class="values-grid">
+          <div class="value-chip">Excellence</div>
+          <div class="value-chip">Integrity</div>
+          <div class="value-chip">Respect</div>
+          <div class="value-chip">Innovation</div>
+          <div class="value-chip">Leadership</div>
+          <div class="value-chip">Collaboration</div>
+          <div class="value-chip">Inclusivity</div>
+          <div class="value-chip">Lifelong Learning</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why" class="section section-alt">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="badge">Why Choose Us</span>
+      <h2>The Narbeth Difference</h2>
+      <span class="gold-line"></span>
+      <p>We go beyond textbooks to build confident, capable, and curious learners ready for tomorrow's world.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon">👩‍🏫</div>
+        <h3>Experienced Teachers</h3>
+        <p>Qualified educators dedicated to helping every student succeed with compassion, expertise, and patience.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🎮</div>
+        <h3>Interactive Learning</h3>
+        <p>Lessons designed to encourage participation, creativity, and problem-solving through hands-on engagement.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">💻</div>
+        <h3>Modern Technology</h3>
+        <p>Digital learning resources, online materials, and technology-enhanced classrooms for the modern learner.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🤝</div>
+        <h3>Student Support</h3>
+        <p>Academic guidance, mentoring, and personalized assistance to ensure no student is left behind.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">📅</div>
+        <h3>Flexible Learning</h3>
+        <p>Support for both in-person and online learning to accommodate diverse student schedules and needs.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🛡️</div>
+        <h3>Safe Environment</h3>
+        <p>A welcoming, inclusive, and respectful community where every learner feels valued and protected.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATISTICS -->
+<section id="stats" class="section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item fade-in">
+        <span class="stat-num counter" data-target="1000">0</span>
+        <div class="stat-label">Students Educated</div>
+      </div>
+      <div class="stat-item fade-in">
+        <span class="stat-num counter" data-target="50">0</span>
+        <div class="stat-label">Dedicated Teachers</div>
+      </div>
+      <div class="stat-item fade-in">
+        <span class="stat-num counter" data-target="20">0</span>
+        <div class="stat-label">Academic & Skills Programs</div>
+      </div>
+      <div class="stat-item fade-in">
+        <span class="stat-num counter" data-target="95">0</span>
+        <div class="stat-label">Student Success Rate %</div>
+      </div>
+      <div class="stat-item fade-in">
+        <span class="stat-num counter" data-target="15">0</span>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+      <div class="stat-item fade-in">
+        <span class="stat-num counter" data-target="30">0</span>
+        <div class="stat-label">Community Events</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs" class="section section-alt">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="badge">Academic Programs</span>
+      <h2>What We Offer</h2>
+      <span class="gold-line"></span>
+      <p>From foundational primary education to career-ready skills development, our programs are designed for every stage of learning.</p>
+    </div>
+    <div class="programs-tabs fade-in">
+      <button class="tab-btn active" onclick="showTab('primary')">📚 Primary Education</button>
+      <button class="tab-btn" onclick="showTab('secondary')">🎓 Secondary Education</button>
+      <button class="tab-btn" onclick="showTab('skills')">💡 Skills Development</button>
+    </div>
+    <div id="tab-primary" class="program-panel active fade-in">
+      <div class="program-card">
+        <div class="program-header">
+          <div class="level">Foundation Level</div>
+          <h3>Primary Education</h3>
+          <p style="color:rgba(255,255,255,0.7);margin-top:.5rem;font-size:.9rem">Building strong academic foundations with a comprehensive, balanced curriculum.</p>
+        </div>
+        <div class="program-body">
+          <div class="subject-list">
+            <div class="subject-item">English Language</div>
+            <div class="subject-item">Mathematics</div>
+            <div class="subject-item">Science</div>
+            <div class="subject-item">Social Studies</div>
+            <div class="subject-item">Computer Studies</div>
+            <div class="subject-item">Arts & Crafts</div>
+            <div class="subject-item">Physical Education</div>
+            <div class="subject-item">Values Education</div>
+          </div>
+          <a href="#admissions" class="btn btn-primary" style="margin-top:1.5rem">Apply for Primary</a>
+        </div>
+      </div>
+    </div>
+    <div id="tab-secondary" class="program-panel fade-in">
+      <div class="program-card">
+        <div class="program-header">
+          <div class="level">Advanced Level</div>
+          <h3>Secondary Education</h3>
+          <p style="color:rgba(255,255,255,0.7);margin-top:.5rem;font-size:.9rem">Preparing students for higher education and future career success through rigorous academic study.</p>
+        </div>
+        <div class="program-body">
+          <div class="subject-list">
+            <div class="subject-item">Advanced Mathematics</div>
+            <div class="subject-item">English Literature</div>
+            <div class="subject-item">Sciences (Bio/Chem/Phys)</div>
+            <div class="subject-item">Computer Science</div>
+            <div class="subject-item">Business Studies</div>
+            <div class="subject-item">Social Sciences</div>
+            <div class="subject-item">Modern Languages</div>
+            <div class="subject-item">Research & Critical Thinking</div>
+          </div>
+          <a href="#admissions" class="btn btn-primary" style="margin-top:1.5rem">Apply for Secondary</a>
+        </div>
+      </div>
+    </div>
+    <div id="tab-skills" class="program-panel fade-in">
+      <div class="section-header" style="text-align:left;margin-bottom:1.5rem">
+        <p style="margin:0">Career-ready skills for the modern world — practical, hands-on, and industry-relevant.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card"><div class="skill-icon">🖥️</div><h4>Computer Literacy</h4></div>
+        <div class="skill-card"><div class="skill-icon">⌨️</div><h4>Coding & Programming</h4></div>
+        <div class="skill-card"><div class="skill-icon">🌐</div><h4>Web Development</h4></div>
+        <div class="skill-card"><div class="skill-icon">🎨</div><h4>Graphic Design</h4></div>
+        <div class="skill-card"><div class="skill-icon">📱</div><h4>Digital Marketing</h4></div>
+        <div class="skill-card"><div class="skill-icon">💼</div><h4>Entrepreneurship</h4></div>
+        <div class="skill-card"><div class="skill-icon">🎤</div><h4>Public Speaking</h4></div>
+        <div class="skill-card"><div class="skill-icon">💰</div><h4>Financial Literacy</h4></div>
+        <div class="skill-card"><div class="skill-icon">📝</div><h4>Study Skills</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMISSIONS -->
+<section id="admissions" class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="badge">Admissions</span>
+      <h2>Begin Your Journey</h2>
+      <span class="gold-line"></span>
+      <p>Our enrollment process is simple and straightforward. We're here to guide you every step of the way.</p>
+    </div>
+    <div class="admission-grid">
+      <div class="fade-in">
+        <h3 style="color:var(--navy);margin-bottom:1.5rem">Enrollment Process</h3>
+        <div class="steps-list">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Complete the Application</h4>
+              <p>Fill out our online application form with accurate student information.</p>
+            </div>
+          </div>
+          <div class="connector"></div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Submit Required Documents</h4>
+              <p>Upload or deliver all necessary documentation to our admissions office.</p>
+            </div>
+          </div>
+          <div class="connector"></div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Assessment (If Applicable)</h4>
+              <p>Attend a brief interview or placement assessment to determine the best program fit.</p>
+            </div>
+          </div>
+          <div class="connector"></div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Receive Confirmation</h4>
+              <p>Get your official admission confirmation letter and welcome package.</p>
+            </div>
+          </div>
+          <div class="connector"></div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Begin Learning!</h4>
+              <p>Join your class, meet your teachers, and start your Narbeth Academy journey.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="docs-card">
+          <h3>Required Documents</h3>
+          <div class="doc-item"><span class="doc-icon">📄</span><div><strong>Birth Certificate</strong><p style="font-size:.8rem;color:var(--grey-500);margin:.2rem 0 0">Official copy required</p></div></div>
+          <div class="doc-item"><span class="doc-icon">📋</span><div><strong>Previous School Records</strong><p style="font-size:.8rem;color:var(--grey-500);margin:.2rem 0 0">Report cards or transcripts</p></div></div>
+          <div class="doc-item"><span class="doc-icon">📷</span><div><strong>Passport-size Photograph</strong><p style="font-size:.8rem;color:var(--grey-500);margin:.2rem 0 0">Recent, clear photograph</p></div></div>
+          <div class="doc-item"><span class="doc-icon">🪪</span><div><strong>Parent/Guardian ID</strong><p style="font-size:.8rem;color:var(--grey-500);margin:.2rem 0 0">Where applicable</p></div></div>
+        </div>
+        <div class="enroll-cta">
+          <h3>Ready to Join Us?</h3>
+          <p>Take the first step toward a brighter future today.</p>
+          <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center">Start Your Application</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHERS -->
+<section id="teachers" class="section section-alt">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="badge">Our Faculty</span>
+      <h2>Meet Our Dedicated Teachers</h2>
+      <span class="gold-line"></span>
+      <p>Our passionate educators bring expertise, dedication, and a genuine love of learning to every classroom.</p>
+    </div>
+    <div class="teachers-grid">
+      <div class="teacher-card fade-in">
+        <div class="teacher-photo"><div class="teacher-photo-placeholder">👩‍🏫</div></div>
+        <div class="teacher-info">
+          <h3 class="teacher-name">Mrs. Amara Narbeth</h3>
+          <div class="teacher-position">Principal & Head of Education</div>
+          <div class="teacher-quals">M.Ed. Educational Leadership</div>
+          <span class="teacher-exp">15 Years Experience</span>
+          <p style="font-size:.8rem;color:var(--grey-500);margin-top:.75rem">Passionate leader dedicated to transforming educational outcomes for every student.</p>
+        </div>
+      </div>
+      <div class="teacher-card fade-in">
+        <div class="teacher-photo" style="background:linear-gradient(135deg,#d4f0ff,#b3e0f7)"><div class="teacher-photo-placeholder">👨‍🏫</div></div>
+        <div class="teacher-info">
+          <h3 class="teacher-name">Mr. James Okafor</h3>
+          <div class="teacher-position">Mathematics & Science</div>
+          <div class="teacher-quals">B.Sc. Mathematics, PGCE</div>
+          <span class="teacher-exp">10 Years Experience</span>
+          <p style="font-size:.8rem;color:var(--grey-500);margin-top:.75rem">Brings abstract concepts to life through real-world problem-solving approaches.</p>
+        </div>
+      </div>
+      <div class="teacher-card fade-in">
+        <div class="teacher-photo" style="background:linear-gradient(135deg,#fdf3d0,#f8e0a0)"><div class="teacher-photo-placeholder">👩‍💻</div></div>
+        <div class="teacher-info">
+          <h3 class="teacher-name">Ms. Clara Mensah</h3>
+          <div class="teacher-position">Computer Science & Coding</div>
+          <div class="teacher-quals">B.Sc. Computer Science</div>
+          <span class="teacher-exp">8 Years Experience</span>
+          <p style="font-size:.8rem;color:var(--grey-500);margin-top:.75rem">Inspiring the next generation of digital innovators through creative tech education.</p>
+        </div>
+      </div>
+      <div class="teacher-card fade-in">
+        <div class="teacher-photo" style="background:linear-gradient(135deg,#f0e0ff,#ddc0f7)"><div class="teacher-photo-placeholder">👨‍🎨</div></div>
+        <div class="teacher-info">
+          <h3 class="teacher-name">Mr. David Asante</h3>
+          <div class="teacher-position">English & Creative Arts</div>
+          <div class="teacher-quals">B.A. English Literature</div>
+          <span class="teacher-exp">12 Years Experience</span>
+          <p style="font-size:.8rem;color:var(--grey-500);margin-top:.75rem">Cultivates a love of language, storytelling, and creative expression in young minds.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDENT LIFE -->
+<section id="life" class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="badge">Student Life</span>
+      <h2>More Than Academics</h2>
+      <span class="gold-line"></span>
+      <p>We nurture well-rounded individuals through enriching extracurricular activities and community engagement.</p>
+    </div>
+    <div class="life-grid">
+      <div class="life-card fade-in"><div class="life-icon">🏆</div><div><h4>Academic Competitions</h4><p>Challenge yourself in interschool competitions and olympiads across all subjects.</p></div></div>
+      <div class="life-card fade-in"><div class="life-icon">🔬</div><div><h4>Science Projects</h4><p>Hands-on experiments and science fair participation to ignite curiosity.</p></div></div>
+      <div class="life-card fade-in"><div class="life-icon">📚</div><div><h4>Reading Programs</h4><p>Structured literacy programs to build vocabulary, comprehension, and love of reading.</p></div></div>
+      <div class="life-card fade-in"><div class="life-icon">💻</div><div><h4>Computer Club</h4><p>Explore coding, robotics, and digital creativity with like-minded peers.</p></div></div>
+      <div class="life-card fade-in"><div class="life-icon">🎙️</div><div><h4>Debate Club</h4><p>Build confidence, critical thinking, and public speaking through structured debate.</p></div></div>
+      <div class="life-card fade-in"><div class="life-icon">🎨</div><div><h4>Art Club</h4><p>Express creativity through painting, drawing, crafts, and digital design.</p></div></div>
+      <div class="life-card fade-in"><div class="life-icon">🎵</div><div><h4>Music Club</h4><p>Develop musical talent and appreciation through performance and theory.</p></div></div>
+      <div class="life-card fade-in"><div class="life-icon">⚽</div><div><h4>Sports Activities</h4><p>Team sports, athletics, and fitness programs for health and teamwork.</p></div></div>
+      <div class="life-card fade-in"><div class="life-icon">🌍</div><div><h4>Community Outreach</h4><p>Service learning and outreach programs to build empathy and civic responsibility.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section id="facilities" class="section section-alt">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="badge">Campus Facilities</span>
+      <h2>World-Class Learning Spaces</h2>
+      <span class="gold-line"></span>
+      <p>Our campus is designed to inspire learning, collaboration, and discovery at every turn.</p>
+    </div>
+    <div class="facilities-grid">
+      <div class="facility-card fade-in" onclick="openLightbox('Smart Classrooms','🖥️')">
+        <div class="facility-bg"><div class="facility-icon">🖥️</div><div class="facility-name">Smart Classrooms</div></div>
+      </div>
+      <div class="facility-card fade-in" onclick="openLightbox('Computer Laboratory','💻')">
+        <div class="facility-bg" style="background:linear-gradient(135deg,#1a3a8a,var(--navy))"><div class="facility-icon">💻</div><div class="facility-name">Computer Laboratory</div></div>
+      </div>
+      <div class="facility-card fade-in" onclick="openLightbox('Library','📚')">
+        <div class="facility-bg" style="background:linear-gradient(135deg,#2a5a3a,#0A1628)"><div class="facility-icon">📚</div><div class="facility-name">Library</div></div>
+      </div>
+      <div class="facility-card fade-in" onclick="openLightbox('Science Laboratory','🔬')">
+        <div class="facility-bg" style="background:linear-gradient(135deg,#5a2a0a,var(--navy))"><div class="facility-icon">🔬</div><div class="facility-name">Science Laboratory</div></div>
+      </div>
+      <div class="facility-card fade-in" onclick="openLightbox('Multipurpose Hall','🎭')">
+        <div class="facility-bg" style="background:linear-gradient(135deg,#3a1a5a,var(--navy))"><div class="facility-icon">🎭</div><div class="facility-name">Multipurpose Hall</div></div>
+      </div>
+      <div class="facility-card fade-in" onclick="openLightbox('Sports Area','⚽')">
+        <div class="facility-bg" style="background:linear-gradient(135deg,#1a5a2a,var(--navy))"><div class="facility-icon">⚽</div><div class="facility-name">Sports Area</div></div>
+      </div>
+      <div class="facility-card fade-in" onclick="openLightbox('Student Resource Center','🎓')">
+        <div class="facility-bg" style="background:linear-gradient(135deg,#5a3a0a,var(--navy))"><div class="facility-icon">🎓</div><div class="facility-name">Resource Center</div></div>
+      </div>
+      <div class="facility-card fade-in" onclick="openLightbox('Study Spaces','✏️')">
+        <div class="facility-bg" style="background:linear-gradient(135deg,#0a3a5a,var(--navy))"><div class="facility-icon">✏️</div><div class="facility-name">Study Spaces</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="badge">Testimonials</span>
+      <h2>What Our Community Says</h2>
+      <span class="gold-line"></span>
+    </div>
+    <div class="testimonials-container">
+      <div class="testimonial-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">The teachers are incredibly supportive, and the lessons are genuinely engaging. I've gained so much confidence and my academic performance has improved beyond what I imagined.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div><div class="author-name">Sarah K.</div><div class="author-role">Current Student</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Narbeth's Simple Learning Academy provides a truly caring environment where my child looks forward to coming to school each and every day. As a parent, that means everything.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:var(--navy)">P</div>
+          <div><div class="author-name">Mr. Emmanuel T.</div><div class="author-role">Parent</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">The academy helped me build strong academic foundations and personal skills that prepared me well for higher education. I wouldn't be where I am today without Narbeth's guidance.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#2a8a3a,#1a6a2a)">G</div>
+          <div><div class="author-name">Grace M.</div><div class="author-role">Graduate, University of Excellence</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS & EVENTS -->
+<section id="news" class="section section-alt">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="badge">News & Events</span>
+      <h2>Stay Informed</h2>
+      <span class="gold-line"></span>
+      <p>The latest from Narbeth's Simple Learning Academy — announcements, events, and student achievements.</p>
+    </div>
+    <div class="news-grid">
+      <div class="news-card fade-in">
+        <div class="news-img">📢<div class="news-tag">Announcement</div></div>
+        <div class="news-body">
+          <div class="news-date">June 2027</div>
+          <h4>Enrollment Now Open</h4>
+          <p>We are now accepting applications for all programs. Secure your place for the upcoming academic year.</p>
+        </div>
+      </div>
+      <div class="news-card fade-in">
+        <div class="news-img">👪<div class="news-tag">Event</div></div>
+        <div class="news-body">
+          <div class="news-date">July 2027</div>
+          <h4>Parent-Teacher Meeting</h4>
+          <p>Join us for our quarterly parent-teacher conference to discuss student progress and upcoming goals.</p>
+        </div>
+      </div>
+      <div class="news-card fade-in">
+        <div class="news-img">🔭<div class="news-tag">Competition</div></div>
+        <div class="news-body">
+          <div class="news-date">August 2027</div>
+          <h4>Annual Science Fair</h4>
+          <p>Students showcase their innovative science projects to judges, peers, parents, and the wider community.</p>
+        </div>
+      </div>
+      <div class="news-card fade-in">
+        <div class="news-img">🎓<div class="news-tag">Ceremony</div></div>
+        <div class="news-body">
+          <div class="news-date">September 2027</div>
+          <h4>Graduation Ceremony</h4>
+          <p>Celebrate the achievements of our graduating class in a memorable ceremony honoring their hard work.</p>
+        </div>
+      </div>
+      <div class="news-card fade-in">
+        <div class="news-img">🌟<div class="news-tag">Program</div></div>
+        <div class="news-body">
+          <div class="news-date">October 2027</div>
+          <h4>Student Leadership Program</h4>
+          <p>Applications open for our exclusive student leadership development program for secondary learners.</p>
+        </div>
+      </div>
+      <div class="news-card fade-in">
+        <div class="news-img">📅<div class="news-tag">Schedule</div></div>
+        <div class="news-body">
+          <div class="news-date">Ongoing</div>
+          <h4>Academic Calendar 2027</h4>
+          <p>Download the full academic calendar, including term dates, holidays, and key events for the year.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPCOMING EVENTS -->
+    <div style="margin-top:3rem">
+      <h3 style="color:var(--navy);margin-bottom:1.5rem;font-family:'Playfair Display',serif">Upcoming Events</h3>
+      <div class="events-list">
+        <div class="event-item fade-in">
+          <div class="event-date-box"><div class="day">15</div><div class="month">Jul</div></div>
+          <div class="event-info"><h4>Open House</h4><p>Tour our campus and meet our teachers — all prospective students welcome</p></div>
+          <span style="margin-left:auto;font-size:.8rem;color:var(--grey-500);white-space:nowrap">9:00 AM</span>
+        </div>
+        <div class="event-item fade-in">
+          <div class="event-date-box" style="background:linear-gradient(135deg,var(--gold),var(--gold-bright))"><div class="day" style="color:var(--navy)">22</div><div class="month" style="color:var(--navy);opacity:.7">Sep</div></div>
+          <div class="event-info"><h4>Graduation Ceremony</h4><p>Celebrating the graduating class of 2027 with family and the whole community</p></div>
+          <span style="margin-left:auto;font-size:.8rem;color:var(--grey-500);white-space:nowrap">10:00 AM</span>
+        </div>
+        <div class="event-item fade-in">
+          <div class="event-date-box" style="background:linear-gradient(135deg,#2a6a3a,#1a4a2a)"><div class="day">08</div><div class="month">Oct</div></div>
+          <div class="event-info"><h4>Career Day</h4><p>Professionals from diverse industries share insights and inspire our secondary students</p></div>
+          <span style="margin-left:auto;font-size:.8rem;color:var(--grey-500);white-space:nowrap">8:30 AM</span>
+        </div>
+        <div class="event-item fade-in">
+          <div class="event-date-box" style="background:linear-gradient(135deg,#5a1a8a,#3a0a6a)"><div class="day">14</div><div class="month">Nov</div></div>
+          <div class="event-info"><h4>Coding Workshop</h4><p>Hands-on introduction to web development and programming for all age groups</p></div>
+          <span style="margin-left:auto;font-size:.8rem;color:var(--grey-500);white-space:nowrap">2:00 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="badge">FAQ</span>
+      <h2>Frequently Asked Questions</h2>
+      <span class="gold-line"></span>
+      <p>Everything you need to know about Narbeth's Simple Learning Academy 4.0.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item fade-in">
+        <div class="faq-question" onclick="toggleFaq(this)">How do I enroll at Narbeth's Academy?<span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Simply complete our online application form and submit the required documents (birth certificate, previous school records, passport photo, and parent/guardian ID). Our admissions team will guide you through each step of the process.</div></div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-question" onclick="toggleFaq(this)">Do you offer online learning options?<span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Selected courses, particularly in our Skills Development program, may include online or hybrid learning options. Please contact our admissions office for details on which programs currently offer remote learning arrangements.</div></div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-question" onclick="toggleFaq(this)">Are scholarships or financial assistance available?<span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Scholarships may be available based on academic achievement or financial need. We are committed to making quality education accessible. Please reach out to our administrative office for current scholarship availability and application criteria.</div></div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-question" onclick="toggleFaq(this)">How can parents monitor their child's progress?<span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Parents can communicate directly with teachers through scheduled meetings and our parent-teacher conferences. We provide regular progress reports each term, and our staff is always available to discuss your child's development and any areas of concern.</div></div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-question" onclick="toggleFaq(this)">What are the school hours?<span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Our administrative office is open Monday to Friday, 8:00 AM – 5:00 PM, and Saturday, 9:00 AM – 12:00 PM. Standard class hours may vary by program. Please contact us for the specific schedule for your program of interest.</div></div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-question" onclick="toggleFaq(this)">What extracurricular activities are available?<span class="faq-icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">We offer a rich variety of activities including academic competitions, science projects, reading programs, computer club, debate club, art club, music club, sports activities, and community outreach — ensuring every student finds their passion beyond the classroom.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="section section-alt">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="badge">Gallery</span>
+      <h2>Life at Narbeth's Academy</h2>
+      <span class="gold-line"></span>
+      <p>A glimpse into our vibrant campus, student activities, and learning experiences.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item wide fade-in" onclick="openLightbox('Graduation Ceremony 2025','🎓')">
+        <div class="gallery-bg" style="background:linear-gradient(135deg,var(--navy),var(--blue))">🎓</div>
+        <div class="gallery-overlay"><span>🔍</span></div>
+        <div class="gallery-caption">Graduation Ceremony 2025</div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openLightbox('Science Laboratory','🔬')">
+        <div class="gallery-bg" style="background:linear-gradient(135deg,#1a5a2a,var(--navy))">🔬</div>
+        <div class="gallery-overlay"><span>🔍</span></div>
+        <div class="gallery-caption">Science Laboratory</div>
+      </div>
+      <div class="gallery-item tall fade-in" onclick="openLightbox('Computer Lab in Action','💻')">
+        <div class="gallery-bg" style="background:linear-gradient(135deg,#1a2a6a,var(--navy))">💻</div>
+        <div class="gallery-overlay"><span>🔍</span></div>
+        <div class="gallery-caption">Computer Lab in Action</div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openLightbox('Sports Festival','⚽')">
+        <div class="gallery-bg" style="background:linear-gradient(135deg,#5a3a0a,var(--navy))">⚽</div>
+        <div class="gallery-overlay"><span>🔍</span></div>
+        <div class="gallery-caption">Annual Sports Festival</div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openLightbox('Library Reading Session','📚')">
+        <div class="gallery-bg" style="background:linear-gradient(135deg,#3a1a5a,var(--navy))">📚</div>
+        <div class="gallery-overlay"><span>🔍</span></div>
+        <div class="gallery-caption">Library Reading Sessions</div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openLightbox('Art Exhibition','🎨')">
+        <div class="gallery-bg" style="background:linear-gradient(135deg,#5a1a2a,var(--navy))">🎨</div>
+        <div class="gallery-overlay"><span>🔍</span></div>
+        <div class="gallery-caption">Student Art Exhibition</div>
+      </div>
+      <div class="gallery-item wide fade-in" onclick="openLightbox('Community Outreach','🌍')">
+        <div class="gallery-bg" style="background:linear-gradient(135deg,#0a4a3a,var(--navy))">🌍</div>
+        <div class="gallery-overlay"><span>🔍</span></div>
+        <div class="gallery-caption">Community Outreach Program</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="badge">Contact Us</span>
+      <h2>Get in Touch</h2>
+      <span class="gold-line"></span>
+      <p>We'd love to hear from you. Reach out with questions, inquiries, or to schedule a campus visit.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info fade-in">
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div class="contact-item-text">
+            <h4>Academy Address</h4>
+            <p>Narbeth's Simple Learning Academy 4.0<br>Academy Street, Education District<br>(Contact us for full address details)</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-text">
+            <h4>Phone</h4>
+            <p>Contact our office for the current phone number</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div class="contact-item-text">
+            <h4>Email</h4>
+            <p>info@narbethacademy.edu</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🕒</div>
+          <div class="contact-item-text">
+            <h4>Office Hours</h4>
+            <div class="hours-grid">
+              <div class="hour-row"><span>Monday – Friday</span><span><strong>8:00 AM – 5:00 PM</strong></span></div>
+              <div class="hour-row"><span>Saturday</span><span><strong>9:00 AM – 12:00 PM</strong></span></div>
+              <div class="hour-row"><span>Sunday</span><span style="color:var(--grey-300)">Closed</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="map-placeholder" aria-label="Map showing academy location">🗺️</div>
+      </div>
+      <div class="contact-form fade-in">
+        <h3>Send Us a Message</h3>
+        <form id="contact-form" onsubmit="submitForm(event)" novalidate>
+          <div class="form-row">
+            <div class="form-group" id="fg-name">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" placeholder="Your full name" required>
+              <span class="error-msg">Please enter your name.</span>
+            </div>
+            <div class="form-group" id="fg-email">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" placeholder="your@email.com" required>
+              <span class="error-msg">Please enter a valid email.</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" id="fg-phone">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="+1 (555) 000-0000">
+            </div>
+            <div class="form-group" id="fg-subject">
+              <label for="subject">Subject *</label>
+              <select id="subject" required>
+                <option value="">Select a topic…</option>
+                <option>Admissions Inquiry</option>
+                <option>Program Information</option>
+                <option>Fees & Scholarships</option>
+                <option>Campus Visit</option>
+                <option>General Inquiry</option>
+              </select>
+              <span class="error-msg">Please select a subject.</span>
+            </div>
+          </div>
+          <div class="form-group" id="fg-message">
+            <label for="message">Message *</label>
+            <textarea id="message" placeholder="Tell us how we can help you…" required></textarea>
+            <span class="error-msg">Please enter your message.</span>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Send Message ✉️</button>
+          <div class="form-success" id="form-success">
+            ✅ Thank you! Your message has been sent. We'll get back to you within 1–2 business days.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:1rem">
+          <div class="logo-icon">N</div>
+          <div>
+            <div class="logo-text-footer">Narbeth's Simple Learning Academy 4.0</div>
+          </div>
+        </div>
+        <p>Empowering learners with quality education, practical skills, and personalized guidance to achieve academic and personal success.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook">f</a>
+          <a href="https://simple-4.github.io/main.html" class="social-link" aria-label="Twitter">𝕏</a>
+          <a href="#" class="social-link" aria-label="Instagram">📷</a>
+          <a href="#" class="social-link" aria-label="YouTube">▶</a>
+          <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#admissions">Admissions</a></li>
+          <li><a href="#teachers">Our Teachers</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="#programs">Primary Education</a></li>
+          <li><a href="#programs">Secondary Education</a></li>
+          <li><a href="#programs">Computer Literacy</a></li>
+          <li><a href="#programs">Web Development</a></li>
+          <li><a href="#programs">Graphic Design</a></li>
+          <li><a href="#programs">Entrepreneurship</a></li>
+          <li><a href="#programs">Public Speaking</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p style="font-size:.875rem;color:rgba(255,255,255,0.6);margin-bottom:.5rem">Get updates on events, news, and enrollment directly to your inbox.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email address" aria-label="Newsletter email">
+          <button type="button" onclick="subscribeNewsletter(this)">Subscribe</button>
+        </div>
+        <div style="margin-top:1.5rem">
+          <h4 style="margin-bottom:.75rem">Contact</h4>
+          <p style="font-size:.8rem;color:rgba(255,255,255,0.5);line-height:1.8">
+            📧 info@narbethacademy.edu<br>
+            🕒 Mon–Fri: 8 AM – 5 PM<br>
+            📅 Sat: 9 AM – 12 PM
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2027 Narbeth's Simple Learning Academy 4.0. All Rights Reserved.</p>
+      <div class="footer-links">
+        <a href="#" aria-label="Privacy Policy">Privacy Policy</a>
+        <a href="https://simple-3.github.io/" target="_blank" rel="noopener noreferrer">Terms & Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" role="banner" aria-label="Cookie consent">
+  <p>🍪 We use cookies to enhance your experience on our website. By continuing, you agree to our <a href="https://simple-3.github.io/" target="_blank" rel="noopener noreferrer" style="color:var(--gold-bright)">Terms & Conditions</a>.</p>
+  <div class="cookie-btns">
+    <button class="cookie-accept" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-decline" onclick="declineCookies()">Decline</button>
+  </div>
+</div>
+
+<script>
+// =============================================
+// NAVBAR SCROLL
+// =============================================
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 400);
+});
+
+// =============================================
+// DARK MODE
+// =============================================
+let dark = false;
+function toggleDark() {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : '');
+  document.getElementById('dark-btn').textContent = dark ? '☀️' : '🌙';
+}
+
+// =============================================
+// MOBILE MENU
+// =============================================
+function openMobileMenu() { document.getElementById('mobile-menu').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); document.body.style.overflow=''; }
+
+// =============================================
+// SEARCH
+// =============================================
+function openSearch() { document.getElementById('search-overlay').classList.add('open'); document.getElementById('search-input').focus(); document.body.style.overflow='hidden'; }
+function closeSearch() { document.getElementById('search-overlay').classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('search-overlay').addEventListener('click', e => { if(e.target===e.currentTarget) closeSearch(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') { closeSearch(); closeLightbox(); closeMobileMenu(); } });
+
+// =============================================
+// PROGRAM TABS
+// =============================================
+function showTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.program-panel').forEach(p => p.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+
+// =============================================
+// FAQ ACCORDION
+// =============================================
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// =============================================
+// LIGHTBOX
+// =============================================
+function openLightbox(caption, emoji) {
+  document.getElementById('lightbox-content').textContent = emoji;
+  document.getElementById('lightbox-caption').textContent = caption;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('lightbox').addEventListener('click', e => { if(e.target===e.currentTarget) closeLightbox(); });
+
+// =============================================
+// FORM VALIDATION
+// =============================================
+function submitForm(e) {
+  e.preventDefault();
+  let valid = true;
+  const fields = [
+    {id:'name', fg:'fg-name', check: v => v.trim().length > 1},
+    {id:'email', fg:'fg-email', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
+    {id:'subject', fg:'fg-subject', check: v => v !== ''},
+    {id:'message', fg:'fg-message', check: v => v.trim().length > 5}
+  ];
+  fields.forEach(f => {
+    const el = document.getElementById(f.id);
+    const fg = document.getElementById(f.fg);
+    if (!f.check(el.value)) {
+      el.classList.add('error'); fg.classList.add('has-error'); valid = false;
+    } else {
+      el.classList.remove('error'); fg.classList.remove('has-error');
+    }
+  });
+  if (valid) {
+    document.getElementById('form-success').style.display = 'block';
+    document.getElementById('contact-form').reset();
+    setTimeout(() => document.getElementById('form-success').style.display='none', 6000);
+  }
+}
+
+// =============================================
+// NEWSLETTER
+// =============================================
+function subscribeNewsletter(btn) {
+  const input = btn.previousElementSibling;
+  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+    btn.textContent = '✓ Done!'; btn.style.background='#4ade80'; btn.style.color='#fff';
+    input.value = ''; setTimeout(()=>{ btn.textContent='Subscribe'; btn.style.background=''; btn.style.color=''; }, 3000);
+  } else { input.style.border='1px solid #f87171'; setTimeout(()=>input.style.border='',2000); }
+}
+
+// =============================================
+// COOKIES
+// =============================================
+function acceptCookies() { document.getElementById('cookie-banner').classList.add('hidden'); }
+function declineCookies() { document.getElementById('cookie-banner').classList.add('hidden'); }
+if (localStorage.getItem('cookies-accepted')) document.getElementById('cookie-banner').classList.add('hidden');
+function acceptCookies() { localStorage.setItem('cookies-accepted','1'); document.getElementById('cookie-banner').classList.add('hidden'); }
+
+// =============================================
+// INTERSECTION OBSERVER (fade-in + counters)
+// =============================================
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // Animate counters
+      entry.target.querySelectorAll('.counter').forEach(animateCounter);
+      // Hero mini counters
+      if (entry.target.classList.contains('hero-content')) {
+        entry.target.querySelectorAll('[data-count]').forEach(animateHeroCounter);
+      }
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+function animateCounter(el) {
+  const target = parseInt(el.getAttribute('data-target'));
+  const suffix = el.getAttribute('data-suffix') || (target >= 95 ? '%' : target >= 1000 ? '+' : '+');
+  let start = 0;
+  const duration = 1800;
+  const step = timestamp => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target) + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+function animateHeroCounter(el) {
+  const target = parseInt(el.getAttribute('data-count'));
+  const suffix = target >= 1000 ? '+' : target >= 95 ? '%' : '+';
+  let start = 0;
+  const duration = 1500;
+  const step = ts => {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / duration, 1);
+    el.textContent = Math.floor((1-(1-p)**3) * target) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// Set data-target on counter elements and data-suffix
+document.querySelectorAll('.stat-num.counter').forEach(el => {
+  const t = parseInt(el.getAttribute('data-target'));
+  if (!el.getAttribute('data-suffix')) {
+    el.setAttribute('data-suffix', t >= 1000 ? '+' : t >= 95 ? '%' : '+');
+  }
+});
+</script>
+</body>
+</html>
